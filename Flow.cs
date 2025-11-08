@@ -6,10 +6,18 @@ using System.Threading.Tasks;
 
 namespace Program
 {
+    //流程控制类 记录一些流程影响变量（玩家数量|分数池|记牌器|记分器|等） 提供一些流程控制方法 
+    //        
+    //流程Pre   确认玩家数量 初始化分数池; 分配玩家编号 确认顺序； 发放初始卡牌；
+    //流程Round 开启阶段：根据顺序确定本轮host玩家; host选择icard打出；host选择剩余玩家操作顺序；
+    //         行动阶段：玩家2选择行动（）；玩家3选择行动（）...；记录行动效果；
+    //         结算阶段：玩家1选择投票人员；记录投票与结果；部分行动卡在此时发动；执行本轮icard & acard效果；分数分配与记录；
+    //流程结算  游戏结束条件达成（pointPool = 0）；计算额外效果；计算最终分数；宣布胜利者；
+    //         
     public class Flow
     {
         public int playerNum;
-        public int pointRemain;
+        public int pointPool;
         public int givePoint;
 
         public Flow()
@@ -27,8 +35,8 @@ namespace Program
 
         public int GetPoint()
         {
-            pointRemain = pointRemain - givePoint;
-            return pointRemain;
+            pointPool = pointPool - givePoint;
+            return pointPool;
         }
 
 
