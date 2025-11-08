@@ -14,7 +14,7 @@ namespace Program
 
         public Flow()
         {
-            this.playerNum = playerNum;
+            this.playerNum = 0;
 
         }
         public int GetPlayerNum() 
