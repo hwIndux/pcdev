@@ -11,12 +11,12 @@ namespace Program
         {
             Flow flow = new Flow();
             flow.playerNum = flow.GetPlayerNum();//获取玩家数量
-            flow.pointRemain = 50 * flow.playerNum;// 分数池
+            flow.pointPool = 50 * flow.playerNum;// 分数池
 
             Console.WriteLine("player number is " + flow.playerNum);
            
 
-        
+
 
 
 
