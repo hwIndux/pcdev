@@ -18,9 +18,14 @@ namespace Program
    
     public class Card
     {
-        
-        
 
+        public void BuildCard()
+        {
+
+
+
+
+        }
 
     }
 }

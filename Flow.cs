@@ -19,11 +19,13 @@ namespace Program
         public int playerNum;
         public int pointPool;
         public int givePoint;
-
+       // public string[] playerList;
+       // public List<Player> players;
+        
         public Flow()
         {
             this.playerNum = 0;
-
+           
         }
         public int GetPlayerNum() 
         {
@@ -32,16 +34,65 @@ namespace Program
             return playerNum;
         }
 
-
-        public int GetPoint()
+        public void GiveCharacter(string[] playerList, List<Player> players) //PC模式方法 为每位玩家随机分配角色 并把角色属性赋值给玩家
         {
-            pointPool = pointPool - givePoint;
-            return pointPool;
+           
+            var availableCharacters = Character.characterList.Skip(1).ToList(); //跳过第0个空角色，获取可用角色列表为availableCharacters
+            Random random = new Random();
+            List<Character> shuffledCharacters = availableCharacters.OrderBy(c => random.Next()).ToList();// 使用 OrderBy(Guid.NewGuid()) 或 OrderBy(random.Next()) 进行随机打乱  
+            for (int j = 0; j < playerNum; j++)
+            {
+                Console.WriteLine("正在为" + playerList[j] + "分配角色");
+                Player currentPlayer = players[j];
+                Character pickedCharacter = shuffledCharacters[j];              //再将随即打乱的角色按顺序分给玩家
+                currentPlayer.dvplPower = pickedCharacter.dvplPower;
+                currentPlayer.ideoPower = pickedCharacter.ideoPower;
+                currentPlayer.ecoPower = pickedCharacter.ecoPower;
+                currentPlayer.warStatus = pickedCharacter.warStatus;
+                Console.WriteLine(playerList[j] + "分配到的角色是: " + pickedCharacter.characterName + " (发展力: " + pickedCharacter.dvplPower + ", 意识形态力: " + pickedCharacter.ideoPower + ", 经济力: " + pickedCharacter.ecoPower + ", 战争状态: " + pickedCharacter.warStatus + ")");
+
+
+            }
+           
+        }
+
+
+        public void SelectCharacter(string[] playerList, List<Player> players) //桌游模式方法 玩家选择角色
+        {
+            Console.WriteLine("玩家选择角色中");
+            for (int i = 0; i < playerNum; i++)
+            {
+                Console.WriteLine("player " + (i + 1) + " 请选择你的角色（输入数字编号）：");
+                
+                int choice = int.Parse(Console.ReadLine());
+                Character pickedCharacter = Character.characterList[choice];
+                Player currentPlayer = players[i];
+                       
+                currentPlayer.dvplPower = pickedCharacter.dvplPower;
+                currentPlayer.ideoPower = pickedCharacter.ideoPower;
+                currentPlayer.ecoPower = pickedCharacter.ecoPower;
+                currentPlayer.warStatus = pickedCharacter.warStatus;
+
+                Console.WriteLine("player " + (i + 1) + " 选择了角色: " + pickedCharacter.characterName);
+            }
         }
 
 
 
+       
 
+
+
+
+        public int GetPoint()
+        {
+            
+
+
+            pointPool = pointPool - givePoint;
+
+            return pointPool;
+        }
 
 
 
