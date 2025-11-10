@@ -22,10 +22,7 @@ namespace Program
         public void BuildCard()
         {
 
-
-
-
         }
 
-    }
+        }
 }

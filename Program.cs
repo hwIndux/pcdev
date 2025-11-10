@@ -13,6 +13,7 @@ namespace Program
             Flow flow = new Flow();
             Player player = new Player();
             flow.playerNum = flow.GetPlayerNum();//获取玩家数量
+
             int playerNum = flow.playerNum;//类间变量传递
             flow.pointPool = 100 * flow.playerNum;// 分数池
 
