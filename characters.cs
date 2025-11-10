@@ -12,7 +12,19 @@ namespace Program
 {
     public class Character
     {
-
+        public int dvplPower;
+        public int ideoPower;
+        public int ecoPower;
+        public int warStatus;
+        public int[] values = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        // int [0] id, int [1] ideoPower, int [2] ecoPower, int [3] warStatus
+        public Character[] characterList = 
+        {
+            new Character() { dvplPower = 5, ideoPower = 3, ecoPower = 3, warStatus = 0 },
+            new Character() { dvplPower = 6, ideoPower = 2, ecoPower = 2, warStatus = 0 },
+            new Character() { dvplPower = 4, ideoPower = 4, ecoPower = 4, warStatus = 0 },
+            new Character() { dvplPower = 7, ideoPower = 1, ecoPower = 5, warStatus = 3 },
+        };
 
        
         
