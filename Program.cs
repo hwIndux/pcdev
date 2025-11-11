@@ -12,6 +12,7 @@ namespace Program
         {
             Flow flow = new Flow();
             Player player = new Player();
+            Card card = new Card();
             flow.playerNum = flow.GetPlayerNum();//获取玩家数量
 
             int playerNum = flow.playerNum;//类间变量传递
@@ -51,8 +52,11 @@ namespace Program
             {
                 Console.WriteLine("玩家 " + playerList[i] + " 的发展力是: " + players[i].dvplPower);
             }
-           
-
+            Console.WriteLine(players[1].ecoPower + "," + players[1].ideoPower + ","+ players[1].ideology);
+            int cardChoice = flow.PlayIssueCard(players);
+            flow.ApplyIssueEffect(cardChoice, players);
+            Console.WriteLine("player:" + playerList[0] + "'s current ecoPower = " + players[0].ecoPower);
+            Console.WriteLine(players[1].ecoPower + "," + players[1].ideoPower);
 
 
         }

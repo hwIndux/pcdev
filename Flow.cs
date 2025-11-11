@@ -45,10 +45,14 @@ namespace Program
                 Console.WriteLine("正在为" + playerList[j] + "分配角色");
                 Player currentPlayer = players[j];
                 Character pickedCharacter = shuffledCharacters[j];              //再将随即打乱的角色按顺序分给玩家
+                currentPlayer.characterName = pickedCharacter.characterName;     
                 currentPlayer.dvplPower = pickedCharacter.dvplPower;
                 currentPlayer.ideoPower = pickedCharacter.ideoPower;
                 currentPlayer.ecoPower = pickedCharacter.ecoPower;
                 currentPlayer.warStatus = pickedCharacter.warStatus;
+                currentPlayer.ideology = pickedCharacter.ideology;
+                currentPlayer.dvlpStatus = pickedCharacter.dvlpStatus;
+
                 Console.WriteLine(playerList[j] + "分配到的角色是: " + pickedCharacter.characterName + " (发展力: " + pickedCharacter.dvplPower + ", 意识形态力: " + pickedCharacter.ideoPower + ", 经济力: " + pickedCharacter.ecoPower + ", 战争状态: " + pickedCharacter.warStatus + ")");
 
 
@@ -67,18 +71,40 @@ namespace Program
                 int choice = int.Parse(Console.ReadLine());
                 Character pickedCharacter = Character.characterList[choice];
                 Player currentPlayer = players[i];
-                       
+                currentPlayer.characterName = pickedCharacter.characterName;       
                 currentPlayer.dvplPower = pickedCharacter.dvplPower;
                 currentPlayer.ideoPower = pickedCharacter.ideoPower;
                 currentPlayer.ecoPower = pickedCharacter.ecoPower;
                 currentPlayer.warStatus = pickedCharacter.warStatus;
+                currentPlayer.ideology = pickedCharacter.ideology;
+                currentPlayer.dvlpStatus = pickedCharacter.dvlpStatus;
 
                 Console.WriteLine("player " + (i + 1) + " 选择了角色: " + pickedCharacter.characterName);
             }
         }
 
+        public int PlayIssueCard( List<Player> players)
+        {
+            Console.WriteLine("Choose an issue card to play:");
+            int cardChoice = int.Parse(Console.ReadLine());
+            issueCard currentIssue = Card.issueCards[cardChoice];
+            Console.WriteLine("提出议题：" + currentIssue.issueName + "     内容为：" + currentIssue.issueNote);
+            return cardChoice ;
+        }
+        public void ApplyIssueEffect(int cardChoice, List<Player> players)
+        {
+            issueCard currentIssue = Card.issueCards[cardChoice];
+            foreach (var player in players)
+            {
+                // 根据玩家的意识形态应用卡牌效果
+                player.ideoPower += currentIssue.ideoEffect[player.ideology];
+                // 根据玩家的发展状态应用卡牌效果
+                player.ecoPower += currentIssue.dvlpEffect[player.dvlpStatus];
+                // 根据玩家的战争状态应用卡牌效果
+                player.warStatus += currentIssue.warEffect[player.warStatus];
 
-
+            }
+        }
        
 
 

@@ -11,7 +11,8 @@ namespace Program
     public class Player
     {
         public int playerID;
-        public string name;
+        public string playerName;
+        public string characterName;
         public int dvplPower;
         public int ideoPower;
         public int ecoPower;
@@ -30,7 +31,8 @@ namespace Program
                 Player player0 = new Player
                 {
                     playerID = 0,
-                    name = "null",
+                    playerName = playerList[i],
+                    characterName = "null",
                     dvplPower = 0,
                     ideoPower = 0,
                     ecoPower = 0,
