@@ -19,6 +19,7 @@ namespace Program
         public int playerNum;
         public int pointPool;
         public int givePoint;
+        public static string[] actionList = {"[1].抽取1张议题卡   ", "[2].抽取2张行动卡   ", "[3].发动行动卡", "[4].改变战争状态", "[5].直接获取5分" , "[6]. 与玩家密谈或交易" };
        // public string[] playerList;
        // public List<Player> players;
         
@@ -83,9 +84,10 @@ namespace Program
             }
         }
 
-        public int PlayIssueCard( List<Player> players)
+        public int PlayIssueCard()
         {
-            Console.WriteLine("Choose an issue card to play:");
+            
+            
             int cardChoice = int.Parse(Console.ReadLine());
             issueCard currentIssue = Card.issueCards[cardChoice];
             Console.WriteLine("提出议题：" + currentIssue.issueName + "     内容为：" + currentIssue.issueNote);
@@ -105,8 +107,44 @@ namespace Program
 
             }
         }
-       
 
+        public void Movement(int[] order , string[] playerList)
+        { 
+            
+            for (int i = 0; i < playerNum - 1; i++)
+            {
+                Console.WriteLine((order[i] + 1) + "号玩家 " + playerList[order[i]] + " 请发言并选择你的行动:");
+                Console.WriteLine("可选行动有：" + actionList[0] + actionList[1] + actionList[2] + actionList[3] + actionList[4] + actionList[5]);
+                int actionChoice = int.Parse(Console.ReadLine());
+                Console.WriteLine("玩家 " + playerList[order[i]] + " 选择了行动: " + actionList[actionChoice - 1]);
+                switch (actionChoice)
+                {
+                    case 1:
+                        Console.WriteLine("玩家 " + playerList[order[i]] + " 抽取1张议题卡");
+                        break;
+                    case 2:
+                        Console.WriteLine("玩家 " + playerList[order[i]] + " 抽取2张行动卡");
+                        break;
+                    case 3:
+                        Console.WriteLine("玩家 " + playerList[order[i]] + " 发动行动卡");
+                        break;
+                    case 4:
+                        Console.WriteLine("玩家 " + playerList[order[i]] + " 改变战争状态");
+                        break;
+                    case 5:
+                        Console.WriteLine("玩家 " + playerList[order[i]] + " 直接获取5分");
+                        break;
+                    case 6:
+                        Console.WriteLine("玩家 " + playerList[order[i]] + " 与其他玩家密谈或交易");
+                        break;
+                    default:
+                        Console.WriteLine("输入有误，跳过行动");
+                        break;
+                }
+                
+                //玩家选择行动逻辑
+            }
+        }
 
 
 
